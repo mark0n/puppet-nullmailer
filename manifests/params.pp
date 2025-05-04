@@ -1,6 +1,6 @@
 class nullmailer::params {
-  case $::operatingsystem {
-    /(Ubuntu|Debian)/: {
+  case $facts['os']['family'] {
+    'Debian': {
       $package = ['nullmailer', ]
       $absentpackages = [ 'exim4-daemon-light', 'exim4-daemon-heavy',
                           'postfix', 'sendmail-bin', 'citadel-mta',
@@ -10,7 +10,7 @@ class nullmailer::params {
       $manage_etc_mailname = true
     }
     default: {
-      fail("Unsupported platform: ${::operatingsystem}")
+      fail("Unsupported operating system family: ${facts['os']['family']}")
     }
   }
 }

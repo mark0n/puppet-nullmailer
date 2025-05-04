@@ -2,10 +2,10 @@ class nullmailer::config {
 
   if $nullmailer::manage_etc_mailname == true {
 
-    file {"nullmailer /etc/mailname for ${::fqdn}":
+    file {"nullmailer /etc/mailname for ${trusted['hostname']}.${trusted['domain']}":
       ensure  => present,
       name    => '/etc/mailname',
-      content => "${::fqdn}\n",
+      content => "${trusted['hostname']}.${trusted['domain']}\n",
     }
 
   }

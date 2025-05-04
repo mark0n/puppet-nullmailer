@@ -3,8 +3,8 @@ class nullmailer (
   $absentpackages = $nullmailer::params::absentpackages,
   $service = $nullmailer::params::service,
   $manage_etc_mailname = $nullmailer::params::manage_etc_mailname,
-  $adminaddr = "root@$::domain",
-  $remoterelay = "smtp.$::domain",
+  $adminaddr = "root@${trusted['domain']}",
+  $remoterelay = "smtp.${trusted['domain']}",
   $remoteopts = ''
 
 ) inherits nullmailer::params {
